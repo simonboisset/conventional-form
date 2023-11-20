@@ -1,0 +1,38 @@
+name: Publish
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'major | minor | patch'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+jobs:
+  publish-new-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔌 Checkout
+        uses: actions/checkout@v3
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'yarn'
+          registry-url: https://registry.npmjs.org/
+      - name: ⏳ Yarn install
+        run: yarn
+      - name: 🚀 Publish New Version
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          git config --local user.email "simon@lezo.dev"
+          git config --local user.name "simonboisset"
+          yarn version --new-version ${{github.event.inputs.release}} --no-git-tag-version
+          yarn publish --access public
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          git commit -a -m "v${PACKAGE_VERSION}"
+          git push
