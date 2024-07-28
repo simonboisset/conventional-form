@@ -18,13 +18,13 @@ You can define nested object and array with '-' in your name like this :
 
 ```ts
 // List of your inputs names
-'name-lastname';
-'name-firstname';
+'name.lastname';
+'name.firstname';
 'age';
-'contacts-0-userId';
-'contacts-0-text';
-'contacts-1-userId';
-'contacts-1-text';
+'contacts.0.userId';
+'contacts.0.text';
+'contacts.1.userId';
+'contacts.1.text';
 
 // Your data will be like this
 
@@ -38,9 +38,9 @@ type Data = {
 ## Use form data or search params
 
 ```ts
-import { cfd, csp } from 'conventional-form';
+import { getRequestSearchData, getRequestFormData } from 'conventional-form';
 
-const data = cfd(formData);
+const data = getRequestSearchData(formData);
 // or
-const data = csp(searchParams);
+const data = getRequestFormData(searchParams);
 ```

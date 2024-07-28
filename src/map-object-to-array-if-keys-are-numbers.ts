@@ -1,5 +1,5 @@
-import type { Data } from './mapFormData';
-import { parseNumber } from './mapFormData';
+import type { Data } from './map-form-data';
+import { parseNumber } from './map-form-data';
 
 export const mapObjectToArrayIfKeysAreNumbers = <T>(data: Data<T>) => {
   const keys = Object.keys(data) as (keyof Data<T>)[];

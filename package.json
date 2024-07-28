@@ -1,39 +1,41 @@
 {
   "name": "conventional-form",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Make your form validation easy by naming convention",
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && node build.js && tsc",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "test:watch": "vitest",
     "test": "vitest run"
   },
-  "repository": "https://github.com/simonboisset/conventional-form-data",
+  "repository": "https://github.com/simonboisset/conventional-form",
   "bugs": {
-    "url": "https://github.com/simonboisset/conventional-form-data/issues"
+    "url": "https://github.com/simonboisset/conventional-form/issues"
   },
-  "homepage": "https://github.com/simonboisset/conventional-form-data",
+  "homepage": "https://github.com/simonboisset/conventional-form",
   "author": "Simon Boisset <simon@lezo.dev>",
   "license": "MIT",
+  "keywords": [
+    "form",
+    "validation",
+    "form-validation"
+  ],
   "devDependencies": {
-    "esbuild": "^0.19.6",
-    "esbuild-node-externals": "^1.10.0",
-    "prettier": "^3.1.0",
-    "typescript": "^4.7.4",
-    "vitest": "^0.24.0"
+    "prettier": "^3.3.2",
+    "tsup": "^8.2.1",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.2"
   },
   "prettier": {
     "singleQuote": true,
     "tabWidth": 2,
     "printWidth": 120
   },
-  "keywords": [
-    "form",
-    "validation",
-    "form-validation"
-  ]
+  "packageManager": "pnpm@9.5.0+sha256.dbdf5961c32909fb030595a9daa1dae720162e658609a8f92f2fa99835510ca5"
 }
